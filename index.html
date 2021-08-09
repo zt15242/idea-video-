@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>视频解析网站</title>
+	</head>
+	<style type="text/css">
+		.sr{
+			width: 12.5rem;
+			height:30px;
+			border:1px solid red;
+		}
+		.ss{
+			    margin-left: -6px;
+			    width: 40px;
+			    height: 34px;
+		}
+		.tit{
+			text-align: center;
+		}
+		.gd{
+			width: 100%;
+			height: 30px;
+			background-color: #000000;
+			margin-bottom: 15px;
+		}
+		.gg{
+			float: left;
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			color: white;
+			text-align: center;
+			border-right:1px solid white;
+		}
+		.nr{
+			float: left;
+			/* width: 500px; */
+			height: 30px;
+			line-height: 30px;
+			/* text-align: center; */
+		}
+		.icon-search {
+		        background: url(https://zt15242.github.io/js/imgs/sc.png) no-repeat;
+		        width: 15px;
+		        height: 15px;
+		        position: absolute;
+		        display: block;
+		        cursor: pointer
+		    }
+	</style>
+	<script src="https://zt15242.github.io/js/day01/js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function () {
+			$(".line").slideUp();
+			$(".ss").click(function () {
+			var text=$(".sr").val();
+			var src=$("option:selected").val();
+				if (src==0) {
+					alert("请选择线路")
+				}else{
+					var src= $("#WANG").attr("src",src+text);
+				}
+			});
+			$(".sr").keyup(function () {
+				//要删除的target
+				var elem = $(".sr");
+				var X, Y;
+				X = elem.offset().left + elem[0].offsetWidth - (15 + 5);//距离浏览器左边距离
+				Y = elem.offset().top + ((elem[0].offsetHeight) / 2) - 15 / 2;//距离浏览器上边距离
+				$(".icon-search").css({ left: X, top: Y });
+				$(".icon-search").click(function () {
+					elem.val("");
+					$(".icon-search").hide();
+				})
+				$(".icon-search").show();
+				$("#WANG").mouseenter(function () {
+						$(".icon-search").hide();
+				})
+				elem.mousedown(function () {
+					$(".icon-search").show();
+				})
+			})
+			$(document).bind("contextmenu", function () { return false; });//禁止右键
+			                document.oncontextmenu = function () { return false; };
+			                document.onkeydown = function () {
+			                    if (window.event && window.event.keyCode == 123) {
+			                        event.keyCode = 0;
+			                        event.returnValue = false;
+			                        return false;
+			                    }
+			             }
+		})
+	</script>
+	<link rel="stylesheet" type="text/css" href="https://zt15242.github.io/js/css/style2.css"/>
+	<script src="https://zt15242.github.io/js/css/myslideup.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+			<!-- 	<div class="gd">
+			<div class="gg">
+				公告
+			</div>
+			<div class="nr">
+				<ul class="line">
+					<li><span>线路二已恢复</span></li>
+					<li><span>本网站仅供参考学习严谨抄袭，若文章有抄袭请告知</span></li>
+				</ul>
+			</div>
+		</div> -->
+		<select style="float: left;">
+			<option value ="0">--请选择线路--</option>
+			<option value ="https://www.91jxs.com/jiexi/?url=">线路一</option>
+			<option value ="https://www.playm3u8.cn/jiexi.php?url=">线路二</option>
+			<option value="https://api.jiexi.la/?url=">线路三</option>
+		</select>
+		<div class="tit">
+			<input type="text" placeholder="输入网址" class="sr"/>
+			<i class="icon-search"></i>
+			<input type="button"value="搜索" class="ss" />
+		</div>
+	  <div>
+		<iframe id="WANG"
+		allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen="true" allowtransparency="true"
+		src=""
+		style="background-image: url(https://zt15242.github.io/js/imgs/cz.jpg);background-size: 100% 100%;"
+		width="100%" height="300"
+		></iframe>
+	  </div>
+	</body>
+</html>
